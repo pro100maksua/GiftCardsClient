@@ -1,0 +1,37 @@
+<mat-card class="container">
+  <mat-card-header>
+    <div class="header">Orders</div>
+    <div style="margin-left: 16px;margin-right: 16px;"></div>
+  </mat-card-header>
+
+  <mat-card-content class="content">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Order Id </th>
+        <td mat-cell *matCellDef="let order"> {{order.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef> Customer </th>
+        <td mat-cell *matCellDef="let order"> {{order.userName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let order"> {{order.total | currency}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let order"> {{order.date | date: 'medium'}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" routerLink="/orders/{{row.id}}"></tr>
+    </table>
+  </mat-card-content>
+</mat-card>

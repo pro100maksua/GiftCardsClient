@@ -1,0 +1,17 @@
+<mat-card class="container">
+
+    <div class="header">{{ giftCard?.name }} Gift card</div>
+
+    <div class="imagewrapper">
+        <img *ngIf="giftCard" [src]="'https://giftcardsapi.azurewebsites.net/api/giftcards/' + giftCard?.id + '/image'" onerror="this.src='assets/placeholder.png'">
+    </div>
+    <mat-card-content class="content">
+        <div class="description">{{ giftCard?.description }}</div>
+        <div class="price">{{giftCard?.price | currency}}</div>
+    </mat-card-content>
+    <mat-card-actions style="margin:auto;text-align: center">
+        <div class="but">
+            <button class="cart" mat-flat-button color="primary" (click)="addToCart()">Add to Cart</button>
+        </div>
+    </mat-card-actions>
+</mat-card>

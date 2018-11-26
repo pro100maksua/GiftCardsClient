@@ -1,0 +1,60 @@
+<mat-card class="container">
+  <mat-card-header>
+    <div class="header">{{ title }}</div>
+    <div style="margin-left: 16px;margin-right: 16px;"></div>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <div class="item" *ngFor="let item of (cart?.cartItems || cart?.items)">
+      <div class="head">
+        <div class="imgwrapper">
+          <img *ngIf="item" [src]="'https://giftcardsapi.azurewebsites.net/api/giftcards/' + item?.giftCard.id + '/image'" onerror="this.src='assets/placeholder.png'">
+          <div id="name">{{ item?.giftCard.price | currency }} {{ item?.giftCard.name }} Gift Card</div>
+        </div>
+        <div class="cost">
+          <div>Qty:{{ item?.count }}
+            <span style="margin-left:15px;">{{ item?.count * item?.giftCard.price | currency }}</span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isCart" class="delivery">
+        <div class="method">Delivery method - Email</div>
+        <div style="font-size: 13px; color: rgb(155, 155, 155);">
+          We'll send the gift card to your email address
+        </div>
+      </div>
+      <div *ngIf="isCart" class="remove">
+        <button class="remove-btn" mat-flat-button color="primary" (click)="removeFromCart(item)">Remove</button>
+      </div>
+      <div class="bottom"></div>
+    </div>
+    <div class="total" *ngIf="!isCart || cart?.items?.length">
+      <div class="word">Total</div>
+      <div class="number">
+        <div class="actual">{{cart?.total | currency}}</div>
+      </div>
+    </div>
+    <div class="total" *ngIf="!isCart">
+      <div class="word">Ordered By</div>
+      <div class="number">
+        <div class="actual">{{cart?.user?.userName}}</div>
+      </div>
+    </div>
+    <div class="total" *ngIf="!isCart">
+      <div class="word">Date</div>
+      <div class="number">
+        <div class="actual">{{cart?.date | date:'medium'}}</div>
+      </div>
+    </div>
+    <div class="empty" *ngIf="isCart && !cart?.items?.length">Your cart is empty</div>
+  </mat-card-content>
+  <mat-card-actions *ngIf="isCart">
+    <div class="but">
+      <button class="buy" mat-flat-button color="primary" (click)="checkout()" *ngIf="cart?.items.length">
+        Buy Now
+      </button>
+      <button class="buy" mat-flat-button color="primary" (click)="back()" *ngIf="!cart?.items.length">
+        Continue Shoping
+      </button>
+    </div>
+  </mat-card-actions>
+</mat-card>

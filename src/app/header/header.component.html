@@ -1,0 +1,52 @@
+<div class="app-toolbar">
+  <div class="navbar">
+    <a _ngcontent-c1="" aria-label="Angular Material" class="docs-button mat-button" mat-button="" routerlink="/"
+      tabindex="0" aria-disabled="false" href="/">
+      <div class="mat-button-ripple mat-ripple" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+
+    <a class="link mat-button" aria-disabled="false" routerLink="/giftcards">
+      <span class="mat-button-wrapper">Gift Cards</span>
+      <div class="mat-button-ripple mat-ripple"></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a class="link mat-button" aria-disabled="false" routerLink="/categories">
+      <span class="mat-button-wrapper">Categories</span>
+      <div class="mat-button-ripple mat-ripple"></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a class="link mat-button" aria-disabled="false" routerLink="/cart">
+      <span class="mat-button-wrapper">Cart</span>
+      <div class="mat-button-ripple mat-ripple"></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a *ngIf="authServise.isAdmin()" class="link mat-button" aria-disabled="false" routerLink="/orders">
+      <span class="mat-button-wrapper">Orders</span>
+      <div class="mat-button-ripple mat-ripple"></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a *ngIf="!authServise.isLoggedIn()" class="link mat-button" aria-disabled="false" routerLink="/login">
+      <span class="mat-button-wrapper">Sign In</span>
+      <div class="mat-button-ripple mat-ripple"></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a *ngIf="!authServise.isLoggedIn()" class="link mat-button" aria-disabled="false" routerLink="/register">
+      <span class="mat-button-wrapper">Sign Up</span>
+      <div class="mat-button-ripple mat-ripple"></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a *ngIf="authServise.isLoggedIn()" class="link mat-button" aria-disabled="false" (click)="logout()">
+      <span class="mat-button-wrapper">Log Out</span>
+      <div class="mat-button-ripple mat-ripple"></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+
+    <div class="flex-spacer"></div>
+
+    <div class="wrapper">
+      <div class="icon"><mat-icon>search</mat-icon></div>
+      <input class="twinput" type="search" placeholder="Search" autocomplete="off" #input (keyup.enter)="search(input.value)">
+    </div>
+  </div>
+</div>

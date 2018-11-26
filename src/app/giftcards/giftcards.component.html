@@ -1,0 +1,40 @@
+<mat-card class="container">
+  <mat-card-header>
+    <div class="header">{{ title}}</div>
+    <div style="margin-left: 16px;margin-right: 16px;"></div>
+  </mat-card-header>
+
+  <mat-card-content class="content">
+    <div *ngFor="let card of giftCards | paginate: config" class="card" routerLink="/giftcards/{{card.id}}">
+      <div class="item">
+        <img [src]="'https://giftcardsapi.azurewebsites.net/api/giftcards/' + card?.id + '/image'" class="image" onerror="this.src='assets/placeholder.png'">
+        <div class="link">{{ card.name }}</div>
+      </div>
+    </div>
+
+    <pagination-template #p="paginationApi" [id]="config.id" (pageChange)="config.currentPage = $event">
+      <div class="custom-pagination">
+        <div class="pagination-previous" [class.disabled]="p.isFirstPage()">
+          <a *ngIf="!p.isFirstPage()" (click)="p.previous()">
+            < </a> </div> <div *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+              <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                <span>{{ page.label }}</span>
+              </a>
+              <div *ngIf="p.getCurrent() === page.value">
+                <span>{{ page.label }}</span>
+              </div>
+        </div>
+
+        <div class="pagination-next" [class.disabled]="p.isLastPage()">
+          <a *ngIf="!p.isLastPage()" (click)="p.next()"> > </a>
+        </div>
+      </div>
+
+    </pagination-template>
+  </mat-card-content>
+  <mat-card-actions style="width: 850px; margin:auto;">
+    <button *ngIf="isAdmin" mat-flat-button color="primary" routerLink="/giftcards/new">
+      Create New
+    </button>
+  </mat-card-actions>
+</mat-card>

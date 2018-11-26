@@ -1,0 +1,46 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>New Gift Card</mat-card-title>
+  </mat-card-header>
+  <mat-card-content id="container">
+    <div class="left form">
+      <form class="container" [formGroup]="form">
+        <mat-form-field class="inputs">
+          <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="inputs">
+          <input matInput placeholder="Price" formControlName="price">
+        </mat-form-field>
+        <mat-form-field class="inputs">
+          <input matInput placeholder="Code" formControlName="code">
+        </mat-form-field>
+        <mat-form-field class="inputs">
+          <input matInput placeholder="Validity" formControlName="validity">
+        </mat-form-field>
+        <mat-form-field class="inputs">
+          <mat-select class="example-full-width" placeholder="Category" formControlName="categoryId">
+            <mat-option *ngFor="let category of categories" [value]="category.id">
+              {{category.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="right image">
+      <img [src]="imagePreview" onerror="this.src='assets/placeholder.png'">
+      <button mat-flat-button color="primary" (click)="finput.click()" class="upload">Photo</button>
+      <input hidden type="file" #finput (change)="previewImage(finput)" />
+    </div>
+    <div style="clear:both;"></div>
+  </mat-card-content>
+  <mat-card-actions style="width:600px;margin:auto;">
+    <mat-form-field style="width:600px;margin-bottom:20px;margin:auto;" class="example-full-width">
+      <textarea style="height: 100px;" matInput placeholder="Description" [formControl]="description"></textarea>
+    </mat-form-field>
+  </mat-card-actions>
+  <mat-card-footer style="width:600px;margin:auto;">
+    <div style="width:300px;margin:auto;">
+      <button style="width:300px;margin:auto;" mat-flat-button color="primary" (click)="submit()">Submit</button>
+    </div>
+  </mat-card-footer>
+</mat-card>

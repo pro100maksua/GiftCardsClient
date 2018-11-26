@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+mat-card-content {
+    margin-bottom: 0px;
+}
+
+.container>* {
+    width: 100%;
+}
+
+.card {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.inputs {
+    width: 300px;
+}
+
+form {
+    width: 200px;
+    margin: 10px;
+    float: left;
+}
+
+img {
+    max-width: 350px;
+}
+
+.image {
+    width: 350px;
+    margin: 10px;
+    float: right;
+}
+
+.upload {
+    float: right;
+    margin: 20px;
+}
